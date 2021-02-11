@@ -2,26 +2,27 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import { Link } from "react-router-dom";
+
 import Button from "../components/button/index";
 
-import Logo from "../assets/logo.svg";
-import Ranking from "../assets/ranking.svg";
+import LogoImage from "../assets/logo.svg";
+import RankingImage from "../assets/ranking.svg";
 
 export default function InitialPage() {
   return (
     <Container>
       <RankingWrapper>
-        <Link to="/ranking" style={{ textDecoration: "none" }}>
-          <Image src={Ranking} />
-        </Link>
+        <Navigator to="/ranking">
+          <Ranking src={RankingImage} />
+        </Navigator>
       </RankingWrapper>
       <LogoWrapper>
-        <Image src={Logo} />
+        <Logo src={LogoImage} />
       </LogoWrapper>
       <ButtonWrapper>
-        <Link to="/play" style={{ textDecoration: "none" }}>
+        <Navigator to="/play">
           <Button />
-        </Link>
+        </Navigator>
       </ButtonWrapper>
     </Container>
   );
@@ -41,27 +42,39 @@ const RankingWrapper = styled.div`
   width: 100%;
   align-items: flex-start;
   justify-content: flex-end;
-  //background: blue;
 `;
 
-const Image = styled.img``;
+const Logo = styled.img`
+  display: flex;
+`;
+
+const Ranking = styled.img`
+  display: flex;
+  flex: 1;
+`;
 
 const LogoWrapper = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
   align-items: center;
-  //background: yellow;
   justify-content: center;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
+  flex: 1;
   width: 100%;
   align-items: flex-end;
-  flex: 1;
-  //background: red;
   justify-content: center;
 `;
 
-const Text = styled.h1``;
+const Navigator = styled(Link)`
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;

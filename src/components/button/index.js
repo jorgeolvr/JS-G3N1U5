@@ -5,13 +5,13 @@ import { ButtonText } from "../styles/TextStyles";
 
 export default function Button() {
   return (
-    <Wrapper>
+    <ButtonWrapper>
       <Title>Iniciar Jogo</Title>
-    </Wrapper>
+    </ButtonWrapper>
   );
 }
 
-const Wrapper = styled.div`
+const ButtonWrapper = styled.div`
   background: #1f6f8b;
   border: 3px solid #99a8b2;
   box-sizing: border-box;

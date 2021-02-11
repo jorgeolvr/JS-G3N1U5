@@ -2,21 +2,22 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import { Link } from "react-router-dom";
-import Back from "../assets/back.svg";
+
+import BackImage from "../assets/back.svg";
 
 export default function RankingPage() {
   return (
     <Container>
       <Header>
-        <LogoWrapper>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Image src={Back} />
-          </Link>
-        </LogoWrapper>
+        <BackWrapper>
+          <Navigator to="/">
+            <Back src={BackImage} />
+          </Navigator>
+        </BackWrapper>
         <TitleWrapper>
           <Title>Ranking</Title>
         </TitleWrapper>
-        <Space />
+        <SafeArea />
       </Header>
       <ListWrapper>
         <List>oi</List>
@@ -48,12 +49,12 @@ const Header = styled.div`
   margin-bottom: 50px;
 `;
 
-const Image = styled.img`
+const Back = styled.img`
   display: flex;
   flex: 1;
 `;
 
-const LogoWrapper = styled.div`
+const BackWrapper = styled.div`
   display: flex;
   flex: 1;
   height: 100%;
@@ -75,7 +76,17 @@ const Title = styled.div`
   line-height: 24px;
 `;
 
-const Space = styled.div`
+const SafeArea = styled.div`
   display: flex;
   flex: 1;
+`;
+
+const Navigator = styled(Link)`
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
