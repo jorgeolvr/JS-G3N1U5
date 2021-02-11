@@ -1,18 +1,22 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+import { Link } from "react-router-dom";
 import Button from "../components/button/index";
 
-import { Link } from "react-router-dom";
+import Logo from "../assets/logo.svg";
+import Ranking from "../assets/ranking.svg";
 
 export default function InitialPage() {
   return (
     <Container>
       <RankingWrapper>
-        <Text>Ranking</Text>
+        <Link to="/ranking" style={{ textDecoration: "none" }}>
+          <Image src={Ranking} />
+        </Link>
       </RankingWrapper>
       <LogoWrapper>
-        <Text>Logo</Text>
+        <Image src={Logo} />
       </LogoWrapper>
       <ButtonWrapper>
         <Link to="/play" style={{ textDecoration: "none" }}>
@@ -39,6 +43,8 @@ const RankingWrapper = styled.div`
   justify-content: flex-end;
   //background: blue;
 `;
+
+const Image = styled.img``;
 
 const LogoWrapper = styled.div`
   display: flex;
