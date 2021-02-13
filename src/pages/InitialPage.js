@@ -34,10 +34,14 @@ export default function InitialPage() {
 
 const Container = styled.div`
   display: flex;
-  height: 95vh;
+  height: 80vh;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+
+  @media (min-width: 1000px) {
+    height: 95vh;
+  }
 `;
 
 const RankingWrapper = styled.div`

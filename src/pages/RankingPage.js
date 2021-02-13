@@ -77,6 +77,10 @@ const ItemIndex = styled.div`
   flex: 1;
   flex-direction: row;
   justify-content: flex-end;
+
+  @media (min-width: 1000px) {
+    flex: 3;
+  }
 `;
 
 const ItemName = styled.div`
@@ -86,7 +90,7 @@ const ItemName = styled.div`
   padding: 0px 25px 0px;
 
   @media (min-width: 1000px) {
-    flex: 25;
+    flex: 2;
   }
 `;
 
@@ -95,6 +99,11 @@ const ItemScore = styled.div`
   flex: 1;
   flex-direction: row;
   justify-content: flex-end;
+
+  @media (min-width: 1000px) {
+    justify-content: flex-start;
+    flex: 3;
+  }
 `;
 
 const Index = styled.h2`

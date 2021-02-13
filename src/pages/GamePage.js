@@ -29,7 +29,6 @@ export default function GamePage({ history }) {
       setSequence([...sequence, Math.floor(Math.random() * 9) + 1]);
     } else if (value !== sequence[arrayIndex]) {
       // Perde o jogo
-      console.log("errou");
       history.push("/end");
     } else {
       arrayIndex++;
