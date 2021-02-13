@@ -16,8 +16,6 @@ const ButtonWrapper = styled.div`
   border: 3px solid #99a8b2;
   box-sizing: border-box;
   border-radius: 10px;
-  width: 320px;
-  height: 80px;
 `;
 
 const Title = styled(ButtonText)`

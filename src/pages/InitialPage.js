@@ -19,18 +19,22 @@ export default function InitialPage() {
       <LogoWrapper>
         <Logo src={LogoImage} />
       </LogoWrapper>
-      <ButtonWrapper>
-        <Navigator to="/play">
-          <Button />
-        </Navigator>
-      </ButtonWrapper>
+      <FooterWrapper>
+        <SafeArea />
+        <ButtonWrapper>
+          <Navigator to="/play">
+            <Button />
+          </Navigator>
+        </ButtonWrapper>
+        <SafeArea />
+      </FooterWrapper>
     </Container>
   );
 }
 
 const Container = styled.div`
   display: flex;
-  height: 90vh;
+  height: 95vh;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
@@ -61,12 +65,25 @@ const LogoWrapper = styled.div`
   justify-content: center;
 `;
 
-const ButtonWrapper = styled.div`
+const FooterWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   flex: 1;
   width: 100%;
   align-items: flex-end;
   justify-content: center;
+`;
+
+const SafeArea = styled.div`
+  flex: 0;
+
+  @media (min-width: 1000px) {
+    flex: 2;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  flex: 1;
 `;
 
 const Navigator = styled(Link)`
