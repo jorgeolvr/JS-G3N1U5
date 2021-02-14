@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components/macro";
 
+import { Context } from "../context";
 import { Link } from "react-router-dom";
 
-import Button from "../components/button/index";
+import Button from "../components/beginButton/index";
 
 import LogoImage from "../assets/logo.svg";
 import RankingImage from "../assets/ranking.svg";
 
 export default function InitialPage() {
+  const { setGlobalScore, setUserName } = useContext(Context);
+
+  useEffect(() => {
+    setGlobalScore(0);
+    setUserName("");
+  });
+
   return (
     <Container>
       <RankingWrapper>
@@ -23,7 +31,7 @@ export default function InitialPage() {
         <SafeArea />
         <ButtonWrapper>
           <Navigator to="/play">
-            <Button />
+            <Button title="Iniciar Jogo" />
           </Navigator>
         </ButtonWrapper>
         <SafeArea />
@@ -34,7 +42,7 @@ export default function InitialPage() {
 
 const Container = styled.div`
   display: flex;
-  height: 80vh;
+  height: 93vh;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;

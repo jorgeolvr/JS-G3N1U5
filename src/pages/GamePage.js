@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { Context } from "../context";
 import styled from "styled-components/macro";
 
 export default function GamePage({ history }) {
   var intervalIndex = 0;
   var arrayIndex = 0;
 
-  let timer = null;
-
+  let timerRef = useRef(null);
   const [number, setNumber] = useState(null);
   const [sequence, setSequence] = useState([Math.floor(Math.random() * 9) + 1]);
-  //var number = null;
-  //var sequence = [Math.floor(Math.random() * 9) + 1];
+
+  const { globalScore, setGlobalScore } = useContext(Context);
 
   useEffect(() => {
-    timer = setInterval(showNumbers, 3000);
-  }, [sequence, setSequence]);
+    timerRef.current = setInterval(showNumbers, 300);
 
-  function showNumbers() {
-    setNumber(sequence[intervalIndex]);
-    //number = sequence[intervalIndex];
-    if (intervalIndex === sequence.length) {
-      clearInterval(timer);
-    } else {
-      intervalIndex++;
+    function showNumbers() {
+      setNumber(sequence[intervalIndex]);
+      if (intervalIndex === sequence.length) {
+        clearInterval(timerRef.current);
+      } else {
+        intervalIndex++;
+      }
     }
-  }
+  }, [sequence, setSequence, intervalIndex]);
 
   function verifyClickedNumber(value) {
     if (arrayIndex === sequence.length - 1 && value === sequence[arrayIndex]) {
-      // Marca ponto com state global e adiciona um novo número
-      //sequence.push([...sequence, Math.floor(Math.random() * 9) + 1]);
       setSequence([...sequence, Math.floor(Math.random() * 9) + 1]);
+      setGlobalScore(globalScore + 1);
     } else if (value !== sequence[arrayIndex]) {
-      // Perde o jogo
       history.push("/end");
     } else {
       arrayIndex++;
@@ -43,11 +40,9 @@ export default function GamePage({ history }) {
     <Container>
       <SafeArea />
       <BoxWrapper>
-        <BoxSafeArea />
         <Box>
           <BoxText>{number}</BoxText>
         </Box>
-        <BoxSafeArea />
       </BoxWrapper>
       <SafeArea />
       <PadWrapper>
@@ -102,17 +97,9 @@ const Container = styled.div`
 const BoxWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  flex: 2;
-  width: 100%;
+  width: 25vh;
+  height: 25vh;
   justify-content: center;
-`;
-
-const BoxSafeArea = styled.div`
-  flex: 2;
-
-  @media (min-width: 1000px) {
-    flex: 3;
-  }
 `;
 
 const PadSafeArea = styled.div`
@@ -189,6 +176,12 @@ const PadText = styled.div`
   font-size: 60px;
   height: 100%;
 
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+
   ${Button}:active & {
     color: #e6d5b8;
   }
@@ -200,6 +193,7 @@ const PadText = styled.div`
 
 const SafeArea = styled.div`
   flex: 1;
+
   @media (min-width: 1000px) {
     flex: 1;
   }

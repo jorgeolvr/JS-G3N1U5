@@ -42,7 +42,10 @@ export default function RankingPage() {
               <Name>{list.name}</Name>
             </ItemName>
             <ItemScore>
-              <Score>{list.score}</Score>
+              <ScoreWrapper>
+                <Score>{list.score}</Score>
+              </ScoreWrapper>
+              <ScoreSafeArea />
             </ItemScore>
           </ListItem>
         ))}
@@ -61,7 +64,6 @@ const ListWrapper = styled.div`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  //background-color: purple;
 `;
 
 const ListItem = styled.div`
@@ -90,7 +92,7 @@ const ItemName = styled.div`
   padding: 0px 25px 0px;
 
   @media (min-width: 1000px) {
-    flex: 2;
+    flex: 3;
   }
 `;
 
@@ -101,7 +103,7 @@ const ItemScore = styled.div`
   justify-content: flex-end;
 
   @media (min-width: 1000px) {
-    justify-content: flex-start;
+    justify-content: flex-end;
     flex: 3;
   }
 `;
@@ -153,6 +155,24 @@ const Title = styled.div`
 const SafeArea = styled.div`
   display: flex;
   flex: 1;
+`;
+
+const ScoreSafeArea = styled.div`
+  display: flex;
+  flex: 0;
+
+  @media (min-width: 1000px) {
+    flex: 12;
+  }
+`;
+
+const ScoreWrapper = styled.div`
+  display: flex;
+  flex: 1;
+
+  @media (min-width: 1000px) {
+    justify-content: flex-end;
+  }
 `;
 
 const Navigator = styled(Link)`
