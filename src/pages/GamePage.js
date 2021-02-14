@@ -9,6 +9,8 @@ export default function GamePage({ history }) {
 
   const [number, setNumber] = useState(null);
   const [sequence, setSequence] = useState([Math.floor(Math.random() * 9) + 1]);
+  //var number = null;
+  //var sequence = [Math.floor(Math.random() * 9) + 1];
 
   useEffect(() => {
     timer = setInterval(showNumbers, 3000);
@@ -16,6 +18,7 @@ export default function GamePage({ history }) {
 
   function showNumbers() {
     setNumber(sequence[intervalIndex]);
+    //number = sequence[intervalIndex];
     if (intervalIndex === sequence.length) {
       clearInterval(timer);
     } else {
@@ -24,8 +27,9 @@ export default function GamePage({ history }) {
   }
 
   function verifyClickedNumber(value) {
-    if (arrayIndex === sequence.length - 1) {
+    if (arrayIndex === sequence.length - 1 && value === sequence[arrayIndex]) {
       // Marca ponto com state global e adiciona um novo número
+      //sequence.push([...sequence, Math.floor(Math.random() * 9) + 1]);
       setSequence([...sequence, Math.floor(Math.random() * 9) + 1]);
     } else if (value !== sequence[arrayIndex]) {
       // Perde o jogo
