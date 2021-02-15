@@ -7,10 +7,17 @@ export default function GamePage({ history }) {
   var arrayIndex = 0;
 
   let timerRef = useRef(null);
+
   const [number, setNumber] = useState(null);
+  const [playable, setPlayable] = useState(null);
   const [sequence, setSequence] = useState([Math.floor(Math.random() * 9) + 1]);
 
-  const { globalScore, setGlobalScore } = useContext(Context);
+  const { globalScore, setGlobalScore, setUserName } = useContext(Context);
+
+  useEffect(() => {
+    setGlobalScore(0);
+    setUserName("");
+  }, [setGlobalScore, setUserName]);
 
   useEffect(() => {
     timerRef.current = setInterval(showNumbers, 300);
@@ -19,8 +26,10 @@ export default function GamePage({ history }) {
       setNumber(sequence[intervalIndex]);
       if (intervalIndex === sequence.length) {
         clearInterval(timerRef.current);
+        setPlayable(true);
       } else {
         intervalIndex++;
+        setPlayable(false);
       }
     }
   }, [sequence, setSequence, intervalIndex]);
@@ -49,31 +58,67 @@ export default function GamePage({ history }) {
         <PadSafeArea />
         <NumericPad>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(1)}>1</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(1) : {})}
+            >
+              1
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(2)}>2</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(2) : {})}
+            >
+              2
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(3)}>3</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(3) : {})}
+            >
+              3
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(4)}>4</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(4) : {})}
+            >
+              4
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(5)}>5</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(5) : {})}
+            >
+              5
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(6)}>6</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(6) : {})}
+            >
+              6
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(7)}>7</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(7) : {})}
+            >
+              7
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(8)}>8</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(8) : {})}
+            >
+              8
+            </PadText>
           </Button>
           <Button>
-            <PadText onClick={() => verifyClickedNumber(9)}>9</PadText>
+            <PadText
+              onClick={() => (playable === true ? verifyClickedNumber(9) : {})}
+            >
+              9
+            </PadText>
           </Button>
         </NumericPad>
         <PadSafeArea />
